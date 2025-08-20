@@ -21,3 +21,11 @@ export async function updateUserTask(userId, taskIndex, newData) {
     [`task.${taskIndex}`]: newData
   });
 }
+export async function getUserData(userId) {
+  const snap = await getDoc(doc(db, "users", userId));
+  if (snap.exists()) {
+    return snap.data();
+  } else {
+    return null;
+  }
+}
